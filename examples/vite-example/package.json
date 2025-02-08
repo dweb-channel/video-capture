@@ -1,0 +1,20 @@
+{
+  "name": "vite-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vite": "^5.3.2",
+    "vite-plugin-wasm-pack": "^0.1.12"
+  },
+  "dependencies": {
+     "@dweb-browser/svg-wasm": "link:../../pkg"
+  }
+}
