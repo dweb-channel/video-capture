@@ -1,6 +1,6 @@
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [package]
-name = "example-wasm"
+name = "video-capture-wasm"
 version = "0.0.1"
 edition = "2021"
 
