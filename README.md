@@ -2,6 +2,21 @@
 
 这个库提供了一个简单的视频抽帧功能，可以从视频文件或流中提取特定时间点的帧。
 
+### 🚫注意项目废弃，	wasm32-unknown-unknown 是纯 wasm，没有任何 C ABI 支持。
+
+建议使用 [ffmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm)
+
+```ts
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+
+const ffmpeg = createFFmpeg({ log: true });
+
+await ffmpeg.load();
+ffmpeg.FS('writeFile', 'input.mp4', await fetchFile(videoBlob));
+await ffmpeg.run('-i', 'input.mp4', '-ss', '00:00:01', '-frames:v', '1', 'output.jpg');
+const data = ffmpeg.FS('readFile', 'output.jpg');
+const url = URL.createObjectURL(new Blob([data.buffer], { type: 'image/jpeg' }));
+```
 
 ## 前端如何使用
 
