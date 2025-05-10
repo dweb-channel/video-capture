@@ -2,6 +2,28 @@
 
 这个库提供了一个简单的视频抽帧功能，可以从视频文件或流中提取特定时间点的帧。
 
+
+## 前端如何使用
+
+```ts
+// 从视频获取指定时间点的帧
+const result = videoModule.extractVideoFrame(videoDataPtr, videoLength, timeInSeconds);
+
+if (result.isSuccess()) {
+  // 成功获取帧数据
+  const frameBuffer = result.getBuffer();
+  // 处理帧数据...例如创建图像
+  const blob = new Blob([frameBuffer], { type: 'image/rgb' });
+  // ...
+} else {
+  // 处理错误情况
+  const errorCode = result.getErrorCode();
+  const errorMessage = result.getErrorMessage();
+  
+  console.error(`视频处理失败: ${errorMessage} (代码: ${errorCode.toString()})`);
+}
+```
+
 ## 特性
 
 - 只使用FFmpeg的必要库：libavformat、libavcodec、libswscale和libavutil
@@ -31,11 +53,11 @@ ffmpeg-next = { version = "7.1", default-features = false, features = ["format",
 该库提供了一个简单的API用于提取视频帧：
 
 ```rust
-pub fn get_video_frame(
+pub fn extract_video_frame(
     input_ptr: *const u8,  // 指向视频数据的指针
     input_len: usize,      // 视频数据长度
     time_sec: f64          // 要提取的时间点（秒）
-) -> Vec<u8>               // 返回RGB格式的帧数据
+) -> VideoResult        // 返回RGB格式的帧数据
 ```
 
 ## 编译说明

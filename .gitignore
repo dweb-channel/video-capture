@@ -8,3 +8,5 @@ deno.lock
 
 
 dist  
+tests/test_resources/*
+!tests/test_resources/*.md

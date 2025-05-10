@@ -5,11 +5,14 @@ version = "0.0.1"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"] # 同时添加rlib类型，使其可以被集成测试使用
 
 [dependencies]
-wasm-bindgen = "0.2.93"
+wasm-bindgen = "0.2.100"
 ffmpeg-next = { version = "7.1", default-features = false, features = ["format", "codec", "software-scaling", "build"] }
+
+[dev-dependencies]
+image = "0.25.6" # 用于测试中保存PNG/JPEG图片
 
 [profile.release]
 lto = true
