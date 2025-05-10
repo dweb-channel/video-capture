@@ -2,7 +2,7 @@ import fs from "node:fs";
 import url from "node:url";
 import { $ } from "./$.ts";
 
-const name = "example-wasm"
+const name = "video-capture"
 
 const resolve = (path: string) => url.fileURLToPath(import.meta.resolve(path));
 const package_json_filepath = resolve("../pkg/package.json");
@@ -17,11 +17,11 @@ const version =
     }
   })();
 
-await $("wasm-pack", "build  --target web --dev --scope dweb-browser");
+await $("wasm-pack", `build  --target web --dev --scope video-capture`);
 
 fs.renameSync(resolve(`../pkg/${name}.js`), resolve(`../pkg/${name}.mjs`));
 
-// await $("wasm-pack", "build  --target nodejs --release --scope dweb-browser");
+// await $("wasm-pack", "build  --target nodejs --release --scope video-capture");
 
 
 const packageJson = JSON.parse(fs.readFileSync(package_json_filepath, "utf-8"));
@@ -74,15 +74,15 @@ Object.assign(packageJson, {
   },
   repository: {
     type: "git",
-    url: "git://github.com/BioforestChain/svg-wasm.git",
+    url: "git://github.com/dweb-channel/video-capture.git",
   },
   bugs: {
     email: "waterbang6@gmail.com",
-    url: "https://github.com/BioforestChain/svg-wasm/issues",
+    url: "https://github.com/dweb-channel/video-capture/issues",
   },
   author: "waterbang <waterbang6@gmail.com>",
   license: "MIT",
-  keywords: ["svg", "png", "webp"],
+  keywords: ["video", "capture", "frame", "extract"],
 });
 
 fs.writeFileSync(package_json_filepath, JSON.stringify(packageJson, null, 2));

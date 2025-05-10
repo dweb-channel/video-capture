@@ -31,24 +31,8 @@ if (result.isSuccess()) {
 - 提供内存中视频处理，无需写入临时文件
 - 支持多种视频格式
 
-## 实现细节
 
-该库使用了`ffmpeg-next` Rust绑定，并且只引入了必要的FFmpeg组件：
-
-- **libavformat** - 用于读取视频文件或流（通过`format`特性）
-- **libavcodec** - 用于解码视频帧（通过`codec`特性）
-- **libswscale** - 用于像素格式转换（通过`software-scaling`特性）
-- **libavutil** - 提供通用工具函数（在 ffmpeg-next 7.1.0 中已包含在其他模块中）
-
-在`Cargo.toml`中，我们通过特性标志限制了只使用这些必要的组件，并添加了`build`特性以便在编译时自动构建FFmpeg：
-
-```toml
-ffmpeg-next = { version = "7.1", default-features = false, features = ["format", "codec", "software-scaling", "build"] }
-```
-
-使用`build`特性意味着在编译时会从源代码构建FFmpeg，而不是依赖系统安装的FFmpeg库。这样可以确保项目在没有预先安装FFmpeg的环境中也能正常编译。
-
-## 使用方法
+## rust使用方法
 
 该库提供了一个简单的API用于提取视频帧：
 

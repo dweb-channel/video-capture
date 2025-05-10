@@ -5,7 +5,7 @@ version = "0.0.1"
 edition = "2021"
 
 [lib]
-crate-type = ["cdylib", "rlib"] # 同时添加rlib类型，使其可以被集成测试使用
+crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 wasm-bindgen = "0.2.100"
